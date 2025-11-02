@@ -16,7 +16,7 @@ public class BankAccount
          Console.WriteLine($"Ваш лимит овердрафта {Overdraft}");
      }
  }
- public class SevingsAccount: ChekingAccount
+ public class SevingsAccount: BankAccount
  {
      private int Percent {  get; set; }
      public void Interest_rate(int Percent)
@@ -24,7 +24,7 @@ public class BankAccount
          Console.WriteLine($"Ваша процентная ставка состовляет {Percent}%");
      }
  }
- public class CreditAccount : SevingsAccount
+ public class CreditAccount : BankAccount
  {
      private double Credit {  get; set; }
      private DateTime Data { get; set; }
