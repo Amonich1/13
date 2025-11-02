@@ -3,46 +3,35 @@ public class Employee
     private string name, position;
     private int salary;
     private DateTime date;
-    public Employee(string name, string position, int salary, DateTime date) 
-    {
-        this.name = name;
-        this.position = position;
-        this.salary = salary;
-        this.date = date;
-    }
+
+    public string Name { get { return name; } }
+    public string Position { get { return position; } }
+    public int Salary { get { return salary; } }
+    public DateTime Date { get { return date; } set { date = value; } }
 }
 public class Maneger : Employee
 {
-    private int Team_size {  get; set; }
-    public Maneger(string name, string position, int salary, DateTime date, int team_size) : base(name, position, salary, date)
-    {
-        Team_size = team_size;
-    }
-    public void Meeting()
+    private int Team_size { get; set; }
+
+    public void Meeting(int Team_size)
     {
         Console.WriteLine($"Менеджер проводит собрание с {Team_size} сотрудниками");
     }
 }
-public class Developer : Maneger
+public class Developer : Employee
 {
-    private string Language {  get; set; }
-    public Developer(string name, string position, int salary, DateTime date, int team_size, string language) : base(name, position, salary, date, team_size)
-    {
-        Language = language;
-    }
-    public void Write_code()
+    private string Language { get; set; }
+   
+    public void Write_code(string Language)
     {
         Console.WriteLine($"Программисты данной компании пишут на {Language} языке программирования");
     }
 }
-public class Director : Developer
+public class Director : Employee
 {
     private string Department { get; set; }
-    public Director(string name, string position, int salary, DateTime date, int team_size, string language, string department) : base(name, position, salary, date, team_size, language)
-    {
-        Department = department;
-    }
-    public void Budget()
+   
+    public void Budget(string Department)
     {
         Console.WriteLine($"Директор утвердил бюджет отделю {Department}");
     }
@@ -51,11 +40,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Maneger maneger = new Maneger("Полина","повар", 10000, DateTime.Now, 10);
-        maneger.Meeting();
-        Developer developer = new Developer("Полина", "повар", 10000, DateTime.Now, 10, "C#");
-        developer.Write_code();
-        Director director = new Director("Полина", "повар", 10000, DateTime.Now, 10, "C#", "по продажам");
-        director.Budget();
+        Maneger maneger = new Maneger( );
+        maneger.Meeting(10);
+        Developer developer = new Developer( );
+        developer.Write_code("C#");
+        Director director = new Director();
+        director.Budget("по продажам");
     }
 }
