@@ -1,0 +1,61 @@
+public class Employee
+{
+    private string name, position;
+    private int salary;
+    private DateTime date;
+    public Employee(string name, string position, int salary, DateTime date) 
+    {
+        this.name = name;
+        this.position = position;
+        this.salary = salary;
+        this.date = date;
+    }
+}
+public class Maneger : Employee
+{
+    private int Team_size {  get; set; }
+    public Maneger(string name, string position, int salary, DateTime date, int team_size) : base(name, position, salary, date)
+    {
+        Team_size = team_size;
+    }
+    public void Meeting()
+    {
+        Console.WriteLine($"Менеджер проводит собрание с {Team_size} сотрудниками");
+    }
+}
+public class Developer : Maneger
+{
+    private string Language {  get; set; }
+    public Developer(string name, string position, int salary, DateTime date, int team_size, string language) : base(name, position, salary, date, team_size)
+    {
+        Language = language;
+    }
+    public void Write_code()
+    {
+        Console.WriteLine($"Программисты данной компании пишут на {Language} языке программирования");
+    }
+}
+public class Director : Developer
+{
+    private string Department { get; set; }
+    public Director(string name, string position, int salary, DateTime date, int team_size, string language, string department) : base(name, position, salary, date, team_size, language)
+    {
+        Department = department;
+    }
+    public void Budget()
+    {
+        Console.WriteLine($"Директор утвердил бюджет отделю {Department}");
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Maneger maneger = new Maneger("Полина","повар", 10000, DateTime.Now, 10);
+        maneger.Meeting();
+        Developer developer = new Developer("Полина", "повар", 10000, DateTime.Now, 10, "C#");
+        developer.Write_code();
+        Director director = new Director("Полина", "повар", 10000, DateTime.Now, 10, "C#", "по продажам");
+        director.Budget();
+    }
+}
